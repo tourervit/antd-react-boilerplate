@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import './style.css';
+import './style.less';
 
 const App = () => (
   <div className="test">

@@ -1,11 +1,11 @@
 {
-  "name": "bitcoins-direct",
+  "name": "antd-react-boilerplate",
   "version": "1.0.0",
-  "description": "Bitcoins Direct",
+  "description": "Antd React custom boilerplate with loading styles and components on demand",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open 'Google Chrome Canary' --port 3000 --compress ",
-    "build": "webpack --config webpack.prod.js --progress ",
+    "build": "webpack --config webpack.prod.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "tourervit",
@@ -51,7 +51,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
-    "@zeit/next-bundle-analyzer": "^0.1.2",
     "antd": "^3.16.5",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
