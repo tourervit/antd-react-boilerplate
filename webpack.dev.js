@@ -3,7 +3,7 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common.js');
 
-module.exports = merge(common, {
+module.exports = merge(common.webpackCommon, {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   devServer: {
@@ -11,14 +11,7 @@ module.exports = merge(common, {
     historyApiFallback: true,
     hot: true,
   },
-  module: {
-    rules: [
-      {
-        test: /\.(css)$/,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
-  },
+
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,

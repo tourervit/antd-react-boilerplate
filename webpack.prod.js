@@ -1,12 +1,17 @@
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const common = require('./webpack.common.js');
 
-module.exports = merge(common, {
+module.exports = merge(common.webpackCommon, {
   mode: 'production',
+  optimization: {
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+  },
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
@@ -20,9 +25,16 @@ module.exports = merge(common, {
             loader: MiniCssExtractPlugin.loader,
             options: {},
           },
+
           'css-loader',
           'postcss-loader',
-          'less-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: common.antColors,
+              javascriptEnabled: true,
+            },
+          },
         ],
       },
     ],

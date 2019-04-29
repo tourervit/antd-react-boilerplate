@@ -1,6 +1,14 @@
 const path = require('path');
 
-module.exports = {
+const antColors = {
+  'primary-color': '#ff0000',
+  'link-color': '#1DA57A',
+  'border-radius-base': '2px',
+};
+
+exports.antColors = antColors;
+
+exports.webpackCommon = {
   entry: './src',
   output: {
     filename: 'bundle.js',
@@ -16,7 +24,18 @@ module.exports = {
 
       {
         test: /\.(less)$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: antColors,
+              javascriptEnabled: true,
+            },
+          },
+        ],
       },
       {
         test: /\.svg/,
